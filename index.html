@@ -1,15 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Vishv Barot</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta name="description" content="Vishv Barot — clarity, systems, execution." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <style>
     :root {
-      --bg: #0a0c10;
-      --fg: #f2f2f2;
+      --bg: #0b0d12;
+      --fg: #f1f1f1;
       --muted: #9aa0a6;
       --accent: #7c86ff;
       --border: rgba(255,255,255,0.08);
@@ -23,144 +22,112 @@
 
     body {
       background:
-        radial-gradient(900px 500px at 15% 10%, rgba(124,134,255,0.08), transparent 60%),
-        radial-gradient(800px 400px at 85% 80%, rgba(180,200,255,0.06), transparent 65%),
+        radial-gradient(700px 400px at 20% 10%, rgba(124,134,255,0.10), transparent 60%),
+        radial-gradient(600px 300px at 80% 90%, rgba(180,200,255,0.08), transparent 60%),
         var(--bg);
       color: var(--fg);
-      font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
       line-height: 1.7;
-      overflow-x: hidden;
     }
 
     section {
-      position: relative;
       min-height: 100vh;
       padding: 10vh 8vw;
       display: flex;
       flex-direction: column;
       justify-content: center;
-      z-index: 1;
+      position: relative;
     }
 
-    /* ---------- DOT GRID BACKGROUND ---------- */
-
-    .dots::before {
+    /* DOTTED BACKGROUND */
+    section::before {
       content: "";
       position: absolute;
       inset: 0;
-      background-image:
-        radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 26px 26px;
-      opacity: 0.4;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 28px 28px;
+      opacity: 0.35;
       pointer-events: none;
-      mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
     }
 
-    /* ---------- HERO ---------- */
-
+    /* HERO */
     .hero {
       text-align: center;
     }
 
     .hero h1 {
-      font-size: clamp(3rem, 7vw, 5.2rem);
+      font-size: clamp(3rem, 7vw, 5rem);
       letter-spacing: 0.08em;
       font-weight: 600;
     }
 
     .hero p {
-      margin-top: 1.4rem;
-      font-size: 1.1rem;
+      margin-top: 1.2rem;
       color: var(--muted);
+      font-size: 1.1rem;
     }
 
-    .rotating {
-      margin-top: 3.5rem;
-      height: 1.6em;
-      font-size: 1.05rem;
+    .rotate {
+      margin-top: 3rem;
       color: var(--accent);
+      font-size: 1.05rem;
+      height: 1.5em;
       transition: opacity 0.6s ease;
     }
 
-    .divider {
-      width: 140px;
-      height: 1px;
-      background: linear-gradient(
-        to right,
-        transparent,
-        var(--border),
-        transparent
-      );
-      margin: 3.8rem auto 0;
+    /* CONTENT */
+    .content {
+      max-width: 900px;
     }
 
-    /* ---------- CONTENT BLOCK ---------- */
-
-    .block {
-      max-width: 960px;
-    }
-
-    .block h2 {
-      font-size: 1.9rem;
+    .content h2 {
+      font-size: 2rem;
       margin-bottom: 1.4rem;
       font-weight: 500;
     }
 
-    .block p {
-      font-size: 1.05rem;
+    .content p {
       color: var(--muted);
+      max-width: 600px;
       margin-bottom: 1.2rem;
-      max-width: 780px;
     }
 
-    /* ---------- PRINCIPLES ---------- */
-
-    .principles {
+    /* OPERATE */
+    .operate {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2.4rem;
-      margin-top: 3.8rem;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 4rem;
+      margin-top: 3rem;
     }
 
-    .principle {
-      padding-left: 1.3rem;
+    .line {
       border-left: 2px solid var(--accent);
-      opacity: 0.9;
-      background: linear-gradient(
-        to right,
-        rgba(124,134,255,0.06),
-        transparent 60%
-      );
+      padding-left: 1.2rem;
+      margin-bottom: 1.6rem;
     }
 
-    .principle strong {
+    .line strong {
       font-weight: 500;
     }
 
-    .principle span {
+    .line span {
       display: block;
-      margin-top: 0.4rem;
-      font-size: 0.9rem;
       color: var(--muted);
+      font-size: 0.9rem;
+      margin-top: 0.3rem;
     }
 
-    /* ---------- CONTACT ---------- */
-
+    /* CONTACT */
     .contact {
       text-align: center;
     }
 
-    .contact p {
-      margin-top: 0.6rem;
-      color: var(--muted);
-    }
-
     .contact-form {
       max-width: 420px;
-      margin: 3.2rem auto 0;
+      margin: 3rem auto 0;
       display: flex;
       flex-direction: column;
-      gap: 1.4rem;
+      gap: 1.3rem;
     }
 
     .contact-form input {
@@ -171,11 +138,6 @@
       color: var(--fg);
       font-size: 1rem;
       outline: none;
-      transition: border-color 0.3s ease;
-    }
-
-    .contact-form input:focus {
-      border-color: var(--accent);
     }
 
     .contact-form input::placeholder {
@@ -183,18 +145,12 @@
     }
 
     .contact-form button {
-      margin-top: 1.8rem;
-      background: linear-gradient(
-        to right,
-        rgba(124,134,255,0.15),
-        transparent 70%
-      );
-      color: var(--fg);
+      margin-top: 1.5rem;
+      background: transparent;
       border: 1px solid var(--border);
-      padding: 0.8rem 1.6rem;
-      font-size: 0.95rem;
+      color: var(--fg);
+      padding: 0.8rem;
       cursor: pointer;
-      transition: all 0.35s ease;
     }
 
     .contact-form button:hover {
@@ -202,29 +158,18 @@
       color: var(--accent);
     }
 
-    /* ---------- FOOTER ---------- */
-
     footer {
       text-align: center;
-      padding: 2.5rem;
+      padding: 2rem;
       font-size: 0.8rem;
       color: var(--muted);
       border-top: 1px solid var(--border);
-      background:
-        radial-gradient(400px 200px at 50% 0%, rgba(124,134,255,0.06), transparent 70%);
     }
 
-    /* ---------- FADE-IN ---------- */
-
-    .fade {
-      opacity: 0;
-      transform: translateY(18px);
-      transition: all 1s ease;
-    }
-
-    .fade.visible {
-      opacity: 1;
-      transform: translateY(0);
+    @media (max-width: 900px) {
+      .operate {
+        grid-template-columns: 1fr;
+      }
     }
   </style>
 </head>
@@ -232,76 +177,61 @@
 <body>
 
   <!-- HERO -->
-  <section class="hero dots fade">
+  <section class="hero">
     <h1>VISHV BAROT</h1>
     <p>Clarity • Systems • Execution</p>
-    <div class="rotating" id="rotatingText"></div>
-    <div class="divider"></div>
+    <div class="rotate" id="rotate"></div>
   </section>
 
   <!-- HOW I OPERATE -->
-  <section class="dots fade">
-    <div class="block">
+  <section>
+    <div class="content">
       <h2>How I operate</h2>
       <p>
         I focus on how decisions translate into outcomes.
         Not intent. Not momentum. Outcomes.
       </p>
-      <p>
-        Complexity is rarely the real problem.
-        The real problem is tolerance for ambiguity,
-        undefined ownership, and lack of discipline.
-      </p>
 
-      <div class="principles">
-        <div class="principle">
-          <strong>Precision before speed</strong>
-          <span>Fast wrong decisions are expensive.</span>
+      <div class="operate">
+        <div>
+          <p>
+            Complexity is rarely the real problem.
+            What fails is ownership, clarity,
+            and discipline over time.
+          </p>
         </div>
-        <div class="principle">
-          <strong>Structure before scale</strong>
-          <span>Scale amplifies what already exists.</span>
-        </div>
-        <div class="principle">
-          <strong>Adoption over appearance</strong>
-          <span>Usage is the only truth.</span>
-        </div>
-        <div class="principle">
-          <strong>Documentation is leverage</strong>
-          <span>What isn’t written cannot be defended.</span>
+
+        <div>
+          <div class="line">
+            <strong>Precision before speed</strong>
+            <span>Fast wrong decisions are expensive.</span>
+          </div>
+          <div class="line">
+            <strong>Structure before scale</strong>
+            <span>Scale amplifies what already exists.</span>
+          </div>
+          <div class="line">
+            <strong>Adoption over appearance</strong>
+            <span>Usage is the only truth.</span>
+          </div>
+          <div class="line">
+            <strong>Documentation is leverage</strong>
+            <span>What isn’t written cannot be defended.</span>
+          </div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- POSITION -->
-  <section class="dots fade">
-    <div class="block">
-      <h2>What this space represents</h2>
-      <p>
-        This is not a portfolio.
-        It is not a pitch.
-      </p>
-      <p>
-        It is a reference point for people who value
-        clarity, accountability, and long-term thinking.
-      </p>
-      <p>
-        If you are looking for shortcuts,
-        this page will feel deliberately quiet.
-      </p>
-    </div>
-  </section>
-
   <!-- CONTACT -->
-  <section class="contact dots fade">
+  <section class="contact">
     <h2>Contact</h2>
     <p>Be clear. Be specific.</p>
 
     <form class="contact-form">
-      <input type="text" placeholder="Name" required />
-      <input type="tel" placeholder="Phone Number" required />
-      <input type="email" placeholder="Email ID" required />
+      <input type="text" placeholder="Name" required>
+      <input type="tel" placeholder="Phone Number" required>
+      <input type="email" placeholder="Email ID" required>
       <button type="submit">Submit</button>
     </form>
   </section>
@@ -311,45 +241,29 @@
   </footer>
 
   <script>
-    /* Rotating text */
     const lines = [
       "Execution is a design problem.",
-      "Systems fail silently before they fail publicly.",
       "Clarity is a competitive advantage.",
-      "Discipline compounds over time.",
-      "Complexity demands responsibility."
+      "Discipline compounds.",
+      "Systems demand responsibility."
     ];
 
     let i = 0;
-    const textEl = document.getElementById("rotatingText");
+    const el = document.getElementById("rotate");
 
-    function rotate() {
-      textEl.style.opacity = 0;
+    function rotateText() {
+      el.style.opacity = 0;
       setTimeout(() => {
-        textEl.textContent = lines[i];
-        textEl.style.opacity = 1;
+        el.textContent = lines[i];
+        el.style.opacity = 1;
         i = (i + 1) % lines.length;
-      }, 600);
+      }, 500);
     }
 
-    rotate();
-    setInterval(rotate, 3800);
+    rotateText();
+    setInterval(rotateText, 3500);
 
-    /* Footer year */
     document.getElementById("year").textContent = new Date().getFullYear();
-
-    /* Fade-in on scroll */
-    const faders = document.querySelectorAll(".fade");
-
-    const observer = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add("visible");
-        }
-      });
-    }, { threshold: 0.18 });
-
-    faders.forEach(el => observer.observe(el));
   </script>
 
 </body>
