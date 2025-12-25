@@ -22,7 +22,10 @@
     }
 
     body {
-      background: radial-gradient(1200px 600px at 50% -20%, #141828, var(--bg));
+      background:
+        radial-gradient(900px 500px at 15% 10%, rgba(124,134,255,0.08), transparent 60%),
+        radial-gradient(800px 400px at 85% 80%, rgba(180,200,255,0.06), transparent 65%),
+        var(--bg);
       color: var(--fg);
       font-family: "Inter", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
       line-height: 1.7;
@@ -30,11 +33,27 @@
     }
 
     section {
+      position: relative;
       min-height: 100vh;
       padding: 10vh 8vw;
       display: flex;
       flex-direction: column;
       justify-content: center;
+      z-index: 1;
+    }
+
+    /* ---------- DOT GRID BACKGROUND ---------- */
+
+    .dots::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background-image:
+        radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
+      background-size: 26px 26px;
+      opacity: 0.4;
+      pointer-events: none;
+      mask-image: linear-gradient(to bottom, transparent, black 20%, black 80%, transparent);
     }
 
     /* ---------- HERO ---------- */
@@ -64,10 +83,15 @@
     }
 
     .divider {
-      width: 120px;
+      width: 140px;
       height: 1px;
-      background: var(--border);
-      margin: 3.5rem auto 0;
+      background: linear-gradient(
+        to right,
+        transparent,
+        var(--border),
+        transparent
+      );
+      margin: 3.8rem auto 0;
     }
 
     /* ---------- CONTENT BLOCK ---------- */
@@ -94,14 +118,19 @@
     .principles {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 2.2rem;
-      margin-top: 3.5rem;
+      gap: 2.4rem;
+      margin-top: 3.8rem;
     }
 
     .principle {
-      padding-left: 1.2rem;
+      padding-left: 1.3rem;
       border-left: 2px solid var(--accent);
       opacity: 0.9;
+      background: linear-gradient(
+        to right,
+        rgba(124,134,255,0.06),
+        transparent 60%
+      );
     }
 
     .principle strong {
@@ -155,7 +184,11 @@
 
     .contact-form button {
       margin-top: 1.8rem;
-      background: transparent;
+      background: linear-gradient(
+        to right,
+        rgba(124,134,255,0.15),
+        transparent 70%
+      );
       color: var(--fg);
       border: 1px solid var(--border);
       padding: 0.8rem 1.6rem;
@@ -177,13 +210,15 @@
       font-size: 0.8rem;
       color: var(--muted);
       border-top: 1px solid var(--border);
+      background:
+        radial-gradient(400px 200px at 50% 0%, rgba(124,134,255,0.06), transparent 70%);
     }
 
     /* ---------- FADE-IN ---------- */
 
     .fade {
       opacity: 0;
-      transform: translateY(20px);
+      transform: translateY(18px);
       transition: all 1s ease;
     }
 
@@ -197,7 +232,7 @@
 <body>
 
   <!-- HERO -->
-  <section class="hero fade">
+  <section class="hero dots fade">
     <h1>VISHV BAROT</h1>
     <p>Clarity • Systems • Execution</p>
     <div class="rotating" id="rotatingText"></div>
@@ -205,7 +240,7 @@
   </section>
 
   <!-- HOW I OPERATE -->
-  <section class="fade">
+  <section class="dots fade">
     <div class="block">
       <h2>How I operate</h2>
       <p>
@@ -240,7 +275,7 @@
   </section>
 
   <!-- POSITION -->
-  <section class="fade">
+  <section class="dots fade">
     <div class="block">
       <h2>What this space represents</h2>
       <p>
@@ -259,7 +294,7 @@
   </section>
 
   <!-- CONTACT -->
-  <section class="contact fade">
+  <section class="contact dots fade">
     <h2>Contact</h2>
     <p>Be clear. Be specific.</p>
 
@@ -312,7 +347,7 @@
           entry.target.classList.add("visible");
         }
       });
-    }, { threshold: 0.2 });
+    }, { threshold: 0.18 });
 
     faders.forEach(el => observer.observe(el));
   </script>
