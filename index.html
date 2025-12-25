@@ -1,270 +1,252 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Vishv Barot</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>Vishv Barot</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    :root {
-      --bg: #0b0d12;
-      --fg: #f1f1f1;
-      --muted: #9aa0a6;
-      --accent: #7c86ff;
-      --border: rgba(255,255,255,0.08);
-    }
+<style>
+:root{
+  --bg:#0b0d12;
+  --fg:#f1f1f1;
+  --muted:#9aa0a6;
+  --accent:#7c86ff;
+  --border:rgba(255,255,255,0.08);
+}
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+*{margin:0;padding:0;box-sizing:border-box;}
 
-    body {
-      background:
-        radial-gradient(700px 400px at 20% 10%, rgba(124,134,255,0.10), transparent 60%),
-        radial-gradient(600px 300px at 80% 90%, rgba(180,200,255,0.08), transparent 60%),
-        var(--bg);
-      color: var(--fg);
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      line-height: 1.7;
-    }
+body{
+  background:var(--bg);
+  color:var(--fg);
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  line-height:1.7;
+}
 
-    section {
-      min-height: 100vh;
-      padding: 10vh 8vw;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      position: relative;
-    }
+/* ===== SECTION BASE ===== */
+section{
+  min-height:100vh;
+  padding:12vh 8vw;
+  display:flex;
+  align-items:center;
+  position:relative;
+  overflow:hidden;
+}
 
-    /* DOTTED BACKGROUND */
-    section::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(circle, rgba(255,255,255,0.05) 1px, transparent 1px);
-      background-size: 28px 28px;
-      opacity: 0.35;
-      pointer-events: none;
-    }
+/* ===== INTELLIGENT DOT FIELD ===== */
+section::before{
+  content:"";
+  position:absolute;
+  inset:-20%;
+  background-image:
+    radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+  background-size:28px 28px;
+  opacity:.35;
+  transform:scale(1);
+  transition:transform 2.4s ease, opacity 2.4s ease;
+  pointer-events:none;
+}
 
-    /* HERO */
-    .hero {
-      text-align: center;
-    }
+/* ===== HERO ===== */
+.hero{
+  justify-content:center;
+  text-align:center;
+}
 
-    .hero h1 {
-      font-size: clamp(3rem, 7vw, 5rem);
-      letter-spacing: 0.08em;
-      font-weight: 600;
-    }
+.hero h1{
+  font-size:clamp(3rem,7vw,5rem);
+  letter-spacing:.08em;
+  font-weight:600;
+}
 
-    .hero p {
-      margin-top: 1.2rem;
-      color: var(--muted);
-      font-size: 1.1rem;
-    }
+.hero p{
+  margin-top:1.4rem;
+  color:var(--muted);
+}
 
-    .rotate {
-      margin-top: 3rem;
-      color: var(--accent);
-      font-size: 1.05rem;
-      height: 1.5em;
-      transition: opacity 0.6s ease;
-    }
+/* ===== CONTENT WRAPPER ===== */
+.content{
+  max-width:920px;
+  position:relative;
+  z-index:1;
+}
 
-    /* CONTENT */
-    .content {
-      max-width: 900px;
-    }
+/* ===== OPERATE ===== */
+.operate-grid{
+  display:grid;
+  grid-template-columns:1fr 1.2fr;
+  gap:4rem;
+  margin-top:3rem;
+}
 
-    .content h2 {
-      font-size: 2rem;
-      margin-bottom: 1.4rem;
-      font-weight: 500;
-    }
+.line{
+  border-left:2px solid var(--accent);
+  padding-left:1.2rem;
+  margin-bottom:1.6rem;
+}
 
-    .content p {
-      color: var(--muted);
-      max-width: 600px;
-      margin-bottom: 1.2rem;
-    }
+.line span{
+  display:block;
+  font-size:.9rem;
+  color:var(--muted);
+}
 
-    /* OPERATE */
-    .operate {
-      display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 4rem;
-      margin-top: 3rem;
-    }
+/* ===== TRANSITION ZONE ===== */
+.threshold{
+  min-height:60vh;
+  pointer-events:none;
+}
 
-    .line {
-      border-left: 2px solid var(--accent);
-      padding-left: 1.2rem;
-      margin-bottom: 1.6rem;
-    }
+.threshold::before{
+  opacity:.18;
+  transform:scale(1.6);
+}
 
-    .line strong {
-      font-weight: 500;
-    }
+/* ===== REPRESENTS ===== */
+.represents{
+  justify-content:center;
+}
 
-    .line span {
-      display: block;
-      color: var(--muted);
-      font-size: 0.9rem;
-      margin-top: 0.3rem;
-    }
+.represents::before{
+  background-size:44px 44px;
+  opacity:.22;
+  transform:scale(.85);
+}
 
-    /* CONTACT */
-    .contact {
-      text-align: center;
-    }
+.represents .content{
+  max-width:640px;
+  margin:auto;
+}
 
-    .contact-form {
-      max-width: 420px;
-      margin: 3rem auto 0;
-      display: flex;
-      flex-direction: column;
-      gap: 1.3rem;
-    }
+.represents p{
+  color:var(--muted);
+  margin-bottom:1.6rem;
+}
 
-    .contact-form input {
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid var(--border);
-      padding: 0.7rem 0;
-      color: var(--fg);
-      font-size: 1rem;
-      outline: none;
-    }
+/* ===== UNDERLINED ANCHOR ===== */
+.quote{
+  display:inline-block;
+  font-size:1.1rem;
+  color:var(--fg);
+  padding-bottom:.4rem;
+  position:relative;
+}
 
-    .contact-form input::placeholder {
-      color: var(--muted);
-    }
+.quote::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:0;
+  width:100%;
+  height:1px;
+  background:linear-gradient(to right,var(--accent),transparent);
+}
 
-    .contact-form button {
-      margin-top: 1.5rem;
-      background: transparent;
-      border: 1px solid var(--border);
-      color: var(--fg);
-      padding: 0.8rem;
-      cursor: pointer;
-    }
+/* ===== CONTACT ===== */
+.contact{text-align:center;}
 
-    .contact-form button:hover {
-      border-color: var(--accent);
-      color: var(--accent);
-    }
+.contact-form{
+  max-width:420px;
+  margin:3rem auto 0;
+  display:flex;
+  flex-direction:column;
+  gap:1.3rem;
+}
 
-    footer {
-      text-align: center;
-      padding: 2rem;
-      font-size: 0.8rem;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-    }
+.contact-form input{
+  background:transparent;
+  border:none;
+  border-bottom:1px solid var(--border);
+  padding:.7rem 0;
+  color:var(--fg);
+  outline:none;
+}
 
-    @media (max-width: 900px) {
-      .operate {
-        grid-template-columns: 1fr;
-      }
-    }
-  </style>
+.contact-form button{
+  margin-top:1.5rem;
+  background:transparent;
+  border:1px solid var(--border);
+  color:var(--fg);
+  padding:.8rem;
+  cursor:pointer;
+}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .operate-grid{grid-template-columns:1fr;}
+}
+</style>
 </head>
 
 <body>
 
-  <!-- HERO -->
-  <section class="hero">
+<!-- HERO -->
+<section class="hero">
+  <div class="content">
     <h1>VISHV BAROT</h1>
     <p>Clarity • Systems • Execution</p>
-    <div class="rotate" id="rotate"></div>
-  </section>
+  </div>
+</section>
 
-  <!-- HOW I OPERATE -->
-  <section>
-    <div class="content">
-      <h2>How I operate</h2>
-      <p>
-        I focus on how decisions translate into outcomes.
-        Not intent. Not momentum. Outcomes.
-      </p>
+<!-- HOW I OPERATE -->
+<section>
+  <div class="content">
+    <h2>How I operate</h2>
+    <p>I focus on how decisions translate into outcomes.</p>
 
-      <div class="operate">
-        <div>
-          <p>
-            Complexity is rarely the real problem.
-            What fails is ownership, clarity,
-            and discipline over time.
-          </p>
-        </div>
+    <div class="operate-grid">
+      <div>
+        <p>
+          Complexity is rarely the real problem.
+          What fails is ownership, clarity,
+          and discipline over time.
+        </p>
+      </div>
 
-        <div>
-          <div class="line">
-            <strong>Precision before speed</strong>
-            <span>Fast wrong decisions are expensive.</span>
-          </div>
-          <div class="line">
-            <strong>Structure before scale</strong>
-            <span>Scale amplifies what already exists.</span>
-          </div>
-          <div class="line">
-            <strong>Adoption over appearance</strong>
-            <span>Usage is the only truth.</span>
-          </div>
-          <div class="line">
-            <strong>Documentation is leverage</strong>
-            <span>What isn’t written cannot be defended.</span>
-          </div>
-        </div>
+      <div>
+        <div class="line"><strong>Precision before speed</strong><span>Fast wrong decisions are expensive.</span></div>
+        <div class="line"><strong>Structure before scale</strong><span>Scale amplifies what already exists.</span></div>
+        <div class="line"><strong>Adoption over appearance</strong><span>Usage is the only truth.</span></div>
+        <div class="line"><strong>Documentation is leverage</strong><span>What isn’t written cannot be defended.</span></div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <!-- CONTACT -->
-  <section class="contact">
+<!-- COGNITIVE THRESHOLD (THE MAGIC) -->
+<section class="threshold"></section>
+
+<!-- WHAT THIS SPACE REPRESENTS -->
+<section class="represents">
+  <div class="content">
+    <h2>What this space represents</h2>
+
+    <p>This space is not designed to persuade.</p>
+    <p>It exists to be precise.</p>
+
+    <p class="quote">This is a reference point, not a presentation.</p>
+
+    <p>
+      If you find this space quiet,
+      it is because it is intentional.
+    </p>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact">
+  <div class="content">
     <h2>Contact</h2>
     <p>Be clear. Be specific.</p>
 
     <form class="contact-form">
-      <input type="text" placeholder="Name" required>
-      <input type="tel" placeholder="Phone Number" required>
-      <input type="email" placeholder="Email ID" required>
-      <button type="submit">Submit</button>
+      <input placeholder="Name" required>
+      <input placeholder="Phone Number" required>
+      <input placeholder="Email ID" required>
+      <button>Submit</button>
     </form>
-  </section>
-
-  <footer>
-    © <span id="year"></span> Vishv Barot
-  </footer>
-
-  <script>
-    const lines = [
-      "Execution is a design problem.",
-      "Clarity is a competitive advantage.",
-      "Discipline compounds.",
-      "Systems demand responsibility."
-    ];
-
-    let i = 0;
-    const el = document.getElementById("rotate");
-
-    function rotateText() {
-      el.style.opacity = 0;
-      setTimeout(() => {
-        el.textContent = lines[i];
-        el.style.opacity = 1;
-        i = (i + 1) % lines.length;
-      }, 500);
-    }
-
-    rotateText();
-    setInterval(rotateText, 3500);
-
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
+  </div>
+</section>
 
 </body>
 </html>
